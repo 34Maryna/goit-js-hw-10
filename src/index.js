@@ -33,15 +33,22 @@ if(countries.length > 10) {
         return `<li> <img src="${country.flags.svg}" alt="${country.name.official}" width="40px""><span>${country.name.official}</span></li>`;
     })
     .join('');
-    refs.countryInfo.innerHTML = listMarkUp;
-    refs.countryList.innerHTML = '';
-} else if (countries.length === 1) {
+    refs.countryList.innerHTML = listMarkUp;
+    refs.countryInfo.innerHTML = '';
+    } else if (countries.length === 1) {
     const createMarkup = countries
     .map(country => {
-        const langList = Object.values(country.languages).join(', ');
-        return '<p><b>Capital:</b> ${country.capital}</p><p><b>Population:</b> ${country.population}</p><p><b>Languages:</b> ${languages}</p>';
+        const languages = Object.values(country.languages).join(', ');
+        return `<p><b>Capital:</b> ${country.capital}</p><p><b>Population:</b> ${country.population}</p><p><b>Languages:</b> ${languages}</p>`;
     })
 .join('');
+const listMarkUp = countries
+.map(country => {
+    return `<li> <img src="${country.flags.svg}" alt="${country.name.official}" width="40px""> ${country.name.official}</li>`;
+})
+.join('');
+refs.countryInfo.innerHTML = createMarkup;
+refs.countryList.innerHTML = listMarkUp;
 }
 }
 
